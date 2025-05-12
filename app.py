@@ -1,3 +1,6 @@
+#app
+
+
 from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
@@ -17,7 +20,16 @@ def dashboard():
 def settings():
     if 'logged_in' not in session:
         return redirect(url_for('login'))
-    return render_template('settings.html')
+
+    configuracoes = [
+        {"nome": "Configuração 1", "descricao": "Explica configuração 1", "valor": "Sim"},
+        {"nome": "Configuração 2", "descricao": "Explica configuração 2", "valor": "Não"},
+        {"nome": "Configuração 3", "descricao": "Explica configuração 3", "valor": "URL"},
+        {"nome": "Configuração 4", "descricao": "Explica configuração 4", "valor": "SSH"}
+    ]
+
+    
+    return render_template('settings.html', configuracao=configuracoes)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 <div class="settings-container">
   <h1>Configurações</h1>
 
@@ -11,34 +12,15 @@
       </tr>
     </thead>
     <tbody>
+      {% for configuracoes in configuracao %}
       <tr>
-        <td>Configuração</td>
-        <td>explica configuração</td>
-        <td>Sim</td>
+        <td>{{ configuracoes.nome }}</td>
+        <td>{{ configuracoes.descricao }}</td>
+        <td>{{ configuracoes.valor }}</td>
       </tr>
-      <tr>
-        <td>Configuração</td>
-        <td>explica configuração</td>
-        <td>Sim</td>
-      </tr>
-      <tr>
-        <td>Configuração</td>
-        <td>explica configuração</td>
-        <td>Não</td>
-      </tr>
-      <tr>
-        <td>Configuração</td>
-        <td>explica configuração</td>
-        <td>URL</td>
-      </tr>
-      <tr>
-        <td>Configuração</td>
-        <td>explica configuração</td>
-        <td>SSH</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 
   <button class="save-button">Salvar</button>
-</div>
-{% endblock %}
+</div>{% endblock %}
