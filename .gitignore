@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyd
+*.pyo
+*.so
+.Python
+env/
+venv/
+
+# Flask
+instance/
+
+# Configurações
+.env
+.secret
+
+# IDE
+.vscode/
+.idea/
+
+# Outros
+*.swp
+*.swo
+.DS_Store

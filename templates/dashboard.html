@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block content %}
+<div class="dashboard-container">
+  <h1>Análise | Vendas</h1>
+
+  <div class="dashboard-grid">
+    <!-- Faturamento -->
+    <div class="card">
+      <h2>Faturamento</h2>
+      <div class="metric">5,49M</div>
+      <div class="change negative">-23.2%</div>
+    </div>
+
+    <!-- Faturamento por Vendedor -->
+    <div class="card">
+      <h2>Faturamento por Vendedor</h2>
+      <ul class="seller-list">
+        <li>-0.53 M</li>
+        <li>-0.18 M</li>
+        <li>-0.32 M</li>
+        <!-- outros vendedores -->
+      </ul>
+    </div>
+
+    <!-- Alinhamento de Metas -->
+    <div class="card">
+      <h2>Alinhamento das Metas por Vendedor</h2>
+      <ul class="seller-goals">
+        <li>
+          <span class="seller-name">(Em franco)</span>
+          <span class="goal-percent negative">-100%</span>
+        </li>
+        <li>
+          <span class="seller-name">Ana Vitela</span>
+          <span class="goal-percent negative">-45%</span>
+        </li>
+        <!-- outros vendedores -->
+      </ul>
+    </div>
+
+    <!-- CPV -->
+    <div class="card">
+      <h2>CPV</h2>
+      <div class="metric">1,38M</div>
+    </div>
+  </div>
+
+  <!-- Gráfico Faturamento x Meta -->
+  <div class="chart-container">
+    <h2>Faturamento x Meta</h2>
+    <div class="chart-placeholder">
+      <!-- Aqui iria um gráfico real com Chart.js ou similar -->
+      <p>Meta de Faturamento</p>
+      <div class="chart-bars">
+        <!-- Barras do gráfico -->
+      </div>
+      <div class="chart-labels">
+        <span>2018</span><span>jun</span><span>fev</span
+        ><!-- outros meses -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
