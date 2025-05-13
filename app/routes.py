@@ -35,7 +35,6 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # Verificação básica (substitua por verificação real)
         if username == 'admin' and password == 'admin123':
             session['logged_in'] = True
             return redirect(url_for('dashboard'))
@@ -60,7 +59,6 @@ def faleconosco():
         assunto = request.form.get('subject')
         mensagem = request.form.get('message')
         
-        # Aqui você pode adicionar lógica para enviar email ou salvar no banco de dados
         print(f"Mensagem recebida de {nome} ({email}): {assunto} - {mensagem}")
         
         flash('Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.', 'success')
