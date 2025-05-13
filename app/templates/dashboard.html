@@ -1,63 +1,80 @@
 {% extends "base.html" %} {% block content %}
 <div class="dashboard-container">
-  <h1>Análise | Vendas</h1>
+  <h1>Análise de Concorrência | Web Scraping</h1>
 
   <div class="dashboard-grid">
-    <!-- Faturamento -->
+    <!-- Monitoramento de Concorrentes -->
     <div class="card">
-      <h2>Faturamento</h2>
-      <div class="metric">5,49M</div>
-      <div class="change negative">-23.2%</div>
-    </div>
-
-    <!-- Faturamento por Vendedor -->
-    <div class="card">
-      <h2>Faturamento por Vendedor</h2>
+      <h2>Concorrentes Monitorados</h2>
       <ul class="seller-list">
-        <li>-0.53 M</li>
-        <li>-0.18 M</li>
-        <li>-0.32 M</li>
-        <!-- outros vendedores -->
+        <li>Samsung - 250 produtos</li>
+        <li>Apple - 180 produtos</li>
+        <li>Xiaomi - 220 produtos</li>
+        <li>LG - 150 produtos</li>
+        <li>Philips - 90 produtos</li>
       </ul>
     </div>
 
-    <!-- Alinhamento de Metas -->
+    <!-- Avaliação Média por Concorrente -->
     <div class="card">
-      <h2>Alinhamento das Metas por Vendedor</h2>
+      <h2>Avaliação Média dos Concorrentes</h2>
+      <ul class="seller-list">
+        <li>Samsung - 4.3  (12.300 avaliações)</li>
+        <li>Apple - 4.7  (15.800 avaliações)</li>
+        <li>Xiaomi - 4.5  (10.500 avaliações)</li>
+        <li>LG - 4.2  (8.400 avaliações)</li>
+        <li>Philips - 4.0  (6.200 avaliações)</li>
+      </ul>
+    </div>
+
+    <!-- Produto Mais Avaliado da Concorrência -->
+    <div class="card">
+      <h2>Produto Mais Avaliado</h2>
+      <div class="metric">iPhone 14 - Apple</div>
+      <div class="change positive">15.000 avaliações - 4.8 </div>
+    </div>
+
+    <!-- Produto com Maior Preço da Concorrência -->
+    <div class="card">
+      <h2>Produto Mais Caro</h2>
+      <div class="metric">Samsung Smart TV QLED 8K</div>
+      <div class="change positive">R$ 25.000,00</div>
+    </div>
+
+    <!-- Distribuição de Preços por Marca -->
+    <div class="card">
+      <h2>Distribuição de Preços por Marca</h2>
       <ul class="seller-goals">
         <li>
-          <span class="seller-name">(Em franco)</span>
-          <span class="goal-percent negative">-100%</span>
+          <span class="seller-name">Samsung</span>
+          <span class="goal-percent">R$ 800,00 - R$ 25.000,00</span>
         </li>
         <li>
-          <span class="seller-name">Ana Vitela</span>
-          <span class="goal-percent negative">-45%</span>
+          <span class="seller-name">Apple</span>
+          <span class="goal-percent">R$ 2.500,00 - R$ 15.000,00</span>
         </li>
-        <!-- outros vendedores -->
+        <li>
+          <span class="seller-name">Xiaomi</span>
+          <span class="goal-percent">R$ 500,00 - R$ 8.000,00</span>
+        </li>
       </ul>
-    </div>
-
-    <!-- CPV -->
-    <div class="card">
-      <h2>CPV</h2>
-      <div class="metric">1,38M</div>
     </div>
   </div>
 
-  <!-- Gráfico Faturamento x Meta -->
+  <!-- Gráfico de Avaliações por Marca -->
   <div class="chart-container">
-    <h2>Faturamento x Meta</h2>
+    <h2>Avaliações e Nota Média dos Concorrentes</h2>
     <div class="chart-placeholder">
       <!-- Aqui iria um gráfico real com Chart.js ou similar -->
-      <p>Meta de Faturamento</p>
+      <p>Distribuição das Avaliações</p>
       <div class="chart-bars">
         <!-- Barras do gráfico -->
       </div>
       <div class="chart-labels">
-        <span>2018</span><span>jun</span><span>fev</span
-        ><!-- outros meses -->
+        <span>Samsung</span><span>Apple</span><span>Xiaomi</span><span>LG</span><span>Philips</span>
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}

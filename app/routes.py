@@ -15,6 +15,11 @@ def dashboard():
         return redirect(url_for('login'))
     return render_template('dashboard.html')
 
+@app.route('/cadastro', methods=['GET', 'POST'])
+def cadastro():
+    return render_template('cadastro.html')
+
+
 @app.route('/settings')
 def settings():
     if 'logged_in' not in session:

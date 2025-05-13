@@ -69,13 +69,20 @@ header {
 }
 
 nav a {
-    margin-left: 1.5rem;
+        margin-left: 0.8rem;
     text-decoration: none;
-    color: white;
+    color: black;
     font-weight: 500;
-}
+    background-color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
 
-/* Pagina Inicial */
+}
+nav a:hover {
+    background-color: black;
+    color: white;
+}
 
 
 .subtitle {
@@ -399,6 +406,7 @@ nav a {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    text-align: center;
 }
 
 .pricing-container h1 {
@@ -408,10 +416,11 @@ nav a {
 }
 
 .pricing-plans {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
 }
+
 
 .pricing-card {
     background: white;
@@ -419,7 +428,14 @@ nav a {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
+    width: 300px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Alinha conteúdo e botão */
+    min-height: 450px; /* Altura mínima para manter o alinhamento */
 }
+
 
 .pricing-card.featured {
     border: 2px solid #3498db;
@@ -448,7 +464,7 @@ nav a {
     font-size: 2.5rem;
     font-weight: bold;
     color: #3498db;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .price span {
@@ -459,26 +475,31 @@ nav a {
 .features {
     list-style: none;
     padding: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-align: left;
+    flex-grow: 1; /* Faz a lista expandir e empurrar o botão para baixo */
 }
 
 .features li {
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
     border-bottom: 1px solid #f0f4f8;
 }
 
 .plan-button {
     display: inline-block;
-    width: 80%;
-    padding: 1rem;
+    padding: 0.8rem 1.5rem;
     background-color: #e67e22;
     color: white;
     text-decoration: none;
     border-radius: 4px;
     font-weight: 500;
     transition: background-color 0.3s;
-    margin: 10px;
+    margin-top: auto; /* Mantém o botão na parte inferior do card */
+    width: 100%; /* Mantém o tamanho igual */
+    max-width: 200px; /* Limita o tamanho */
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .plan-button:hover {
     background-color: #d35400;
@@ -525,4 +546,4 @@ select:invalid {
 .login-button i,
 .submit-button i {
     margin-right: 0.5rem;
-}}
+}

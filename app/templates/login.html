@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 <div class="login-container">
   <div class="login-box">
     <h1><i class="fas fa-sign-in-alt"></i> Login</h1>
@@ -7,12 +8,12 @@
     {% endif %}
     <form method="POST" action="{{ url_for('login') }}">
       <div class="form-group">
-        <label for="username"><i class="fas fa-user"></i> Usuário:</label>
+        <label for="username"><i class="fas fa-user"></i> E-mail</label>
         <input
           type="text"
           id="username"
           name="username"
-          placeholder="Digite seu usuário"
+          placeholder="Digite seu E-mail"
           required
         />
       </div>
@@ -30,6 +31,9 @@
         <i class="fas fa-sign-in-alt"></i> Entrar
       </button>
     </form>
+    <div class="register-link">
+      <p>Não possui conta? <a href="{{ url_for('cadastro') }}">Cadastrar-se</a></p>
+    </div>
   </div>
 </div>
 {% endblock %}
