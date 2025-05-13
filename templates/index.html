@@ -1,14 +1,19 @@
 {% extends "base.html" %} {% block content %}
-<section class="hero">
-  <h1>Descubra como sua marca está no mercado</h1>
-  <p class="subtitle">
-    Descubra a percepção do mercado sobre sua marca, avalie a satisfação dos
-    clientes e tome decisões estratégicas com insights de dashboards e leads
-    mensais para impulsionar suas vendas!
-  </p>
-
-  <a href="#" class="cta-button">
-    Fale com nosso time <span class="arrow">→</span>
-  </a>
-</section>
+<main class="main-container">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="text-content">
+        <h1>Descubra como sua marca está no mercado</h1>
+        <p class="subtitle">
+          Descubra a percepção do mercado sobre sua marca, avalie a satisfação
+          dos clientes e tome decisões estratégicas com insights de dashboards e
+          leads mensais para impulsionar suas vendas!
+        </p>
+        <a href="{{ url_for('faleconosco') }}" class="faleconosco-button">
+          Fale com nosso time <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
 {% endblock %}
