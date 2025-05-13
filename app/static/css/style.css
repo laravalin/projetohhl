@@ -25,10 +25,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #13072e; 
-    padding: 2rem;
+    background: url('/static/images/background.png') no-repeat center center/cover;
+    padding: 4rem 2rem;
     text-align: center;
-  }
+    height: 80vh; /* Garante que a seção ocupe a altura total da tela */
+}
+
   
   .hero-content {
     max-width: 800px;
