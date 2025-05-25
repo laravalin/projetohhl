@@ -40,7 +40,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == 'admin' and password == 'admin123':
+        if username == 'admin' and password == 'senha':
             session['logged_in'] = True
             return redirect(url_for('dashboard'))
         else:

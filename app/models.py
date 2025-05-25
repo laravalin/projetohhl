@@ -1,15 +1,26 @@
+from datetime import datetime, timezone
 from typing import Optional
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from app import db
 
-
 class User(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    nome_usuario: so.Mapped[str] = so.mapped_column(sa.String(64), index=True, unique=True)
+    nome_empresa: so.Mapped[str] = so.mapped_column(sa.String(200), index=True)
+    email: so.Mapped[str] = so.mapped_column(sa.String(120), index=True, unique=True)
+    senha_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
+    configuracoes: so.Mapped[list["Configuracoes"]] = so.relationship(back_populates='usuario')
 
-    email: so.Mapped[str] = so.mapped_column(sa.String(120), index=True,unique=True)
-    
-    password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
-    
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return f'<User {self.nome_usuario}>'
+
+class Configuracoes(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    chave_configuracao: so.Mapped[str] = so.mapped_column(sa.String(200))
+    valor_configuracao: so.Mapped[str] = so.mapped_column(sa.String(200))
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
+    usuario: so.Mapped[User] = so.relationship(back_populates='configuracoes')
+
+    def __repr__(self):
+        return f'<Configuração {self.chave_configuracao}={self.valor_configuracao}>'
