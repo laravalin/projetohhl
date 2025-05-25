@@ -122,3 +122,8 @@ def executar_scraping():
 
     except Exception as e:
         return jsonify({"status": "erro", "mensagem": str(e)}), 500
+
+
+@app.route('/perfil')
+def perfil():
+    return render_template('perfil.html')
