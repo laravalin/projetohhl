@@ -49,7 +49,7 @@ def cadastro():
     if form.validate_on_submit():
         user = User(
             nome_usuario=form.username.data,
-            nome_empresa=form.empresa,
+            nome_empresa=form.empresa.data, 
             email=form.email.data
         )
         user.set_senha(form.password.data)
