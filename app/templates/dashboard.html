@@ -1,7 +1,10 @@
 {% extends "base.html" %} {% block content %}
 <div class="dashboard-container">
+  
+  
+  
   <h1>Análise de Concorrência | Web Scraping</h1>
-
+    
   <div class="dashboard-grid">
     <!-- Monitoramento de Concorrentes -->
     <div class="card">
@@ -75,6 +78,11 @@
       </div>
     </div>
   </div>
+  <form action="{{ url_for('executar_scraping') }}" method="get">
+    <button class="login-button" type="submit">
+      Executar Scraping
+    </button>
+    </form>
 </div>
 
 {% endblock %}

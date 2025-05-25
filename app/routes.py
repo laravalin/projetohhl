@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 import sqlalchemy as sa
 from app.forms import LoginForm, RegistrationForm
 from app.models import User
-
+from app.scrapper import scrape
 
 @app.route('/')
 def index():
@@ -99,3 +99,15 @@ def faleconosco():
 @app.route('/preco')
 def preco():
     return render_template('preco.html')
+
+
+
+@app.route("/executar_scraping")
+@login_required
+def executar_scraping():
+    try:
+        scrape(current_user.id)
+        flash("Scraping executado com sucesso!", "success")
+    except Exception as e:
+        flash(f"Erro ao executar scraping: {str(e)}", "danger")
+    return redirect(url_for('dashboard'))

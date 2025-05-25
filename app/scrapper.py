@@ -23,20 +23,19 @@ def get_or_create_origem():
         db.session.commit()
     return origem
 
-
 def obter_url_scraping(user_id):
     config = Configuracoes.query.filter_by(user_id=user_id, chave_configuracao='site_scraping').first()
     return config.valor_configuracao if config else None
 
-def scrape():
-    # Configura o Selenium com Chrome em modo headless (sem abrir janela)
+def scrape(user_id):
 
-    url = obter_url_scraping()
+
+    url = obter_url_scraping(user_id)
+    driver.get(url)
+
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
-
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver.get(url)
 
     cards = driver.find_elements(By.CLASS_NAME, "ui-search-result")
     origem = get_or_create_origem()
