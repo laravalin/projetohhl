@@ -146,3 +146,11 @@ def scrape(user_id):
 
     finally:
         driver.quit()
+
+# if __name__ == "__main__":
+#     with app.app_context():
+#         user = User.query.filter_by(email="henrique@teste.com").first()
+#         if user:
+#             scrape(user.id)
+#         else:
+#             print("Nenhum usuário encontrado no banco.")
