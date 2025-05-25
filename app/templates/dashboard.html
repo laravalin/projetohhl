@@ -1,98 +1,61 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 <div class="dashboard-container">
-  <h1 class="dashboard-title">Análise de Concorrência | Web Scraping</h1>
+  <h1 class="dashboard-title">Preço Médio e Nota por Marca</h1>
 
-  <div class="dashboard-grid">
-    <!-- Monitoramento de Concorrentes -->
-    <div class="card">
-      <h2>Concorrentes Monitorados</h2>
-      <ul class="seller-list">
-        <li>Samsung - 250 produtos</li>
-        <li>Apple - 180 produtos</li>
-        <li>Xiaomi - 220 produtos</li>
-        <li>LG - 150 produtos</li>
-        <li>Philips - 90 produtos</li>
-      </ul>
-    </div>
-
-    <!-- Avaliação Média por Concorrente -->
-    <div class="card">
-      <h2>Avaliação Média dos Concorrentes</h2>
-      <ul class="seller-list">
-        <li>Samsung - 4.3 (12.300 avaliações)</li>
-        <li>Apple - 4.7 (15.800 avaliações)</li>
-        <li>Xiaomi - 4.5 (10.500 avaliações)</li>
-        <li>LG - 4.2 (8.400 avaliações)</li>
-        <li>Philips - 4.0 (6.200 avaliações)</li>
-      </ul>
-    </div>
-
-    <!-- Produto Mais Avaliado da Concorrência -->
-    <div class="card">
-      <h2>Produto Mais Avaliado</h2>
-      <div class="metric">iPhone 14 - Apple</div>
-      <div class="change positive">15.000 avaliações - 4.8</div>
-    </div>
-
-    <!-- Produto com Maior Preço da Concorrência -->
-    <div class="card">
-      <h2>Produto Mais Caro</h2>
-      <div class="metric">Samsung Smart TV QLED 8K</div>
-      <div class="change positive">R$ 25.000,00</div>
-    </div>
-
-    <!-- Distribuição de Preços por Marca -->
-    <div class="card">
-      <h2>Distribuição de Preços por Marca</h2>
-      <ul class="seller-goals">
-        <li>
-          <span class="seller-name">Samsung</span>
-          <span class="goal-percent">R$ 800,00 - R$ 25.000,00</span>
-        </li>
-        <li>
-          <span class="seller-name">Apple</span>
-          <span class="goal-percent">R$ 2.500,00 - R$ 15.000,00</span>
-        </li>
-        <li>
-          <span class="seller-name">Xiaomi</span>
-          <span class="goal-percent">R$ 500,00 - R$ 8.000,00</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Gráfico de Avaliações por Marca -->
   <div class="chart-container">
-    <h2>Avaliações e Nota Média dos Concorrentes</h2>
-    <div class="chart-placeholder">
-      <!-- Aqui iria um gráfico real com Chart.js ou similar -->
-      <p>Distribuição das Avaliações</p>
-      <div class="chart-bars">
-        <!-- Barras do gráfico -->
-      </div>
-      <div class="chart-labels">
-        <span>Samsung</span><span>Apple</span><span>Xiaomi</span><span>LG</span
-        ><span>Philips</span>
-      </div>
-    </div>
+    <canvas id="graficoMarcas" height="100"></canvas>
   </div>
 
-<button id="btn-scraping">Executar Scraping</button>
-<div id="status"></div>
-<script>
-document.getElementById("btn-scraping").addEventListener("click", function () {
-  fetch("/executar-scraping", {
-    method: "POST"
-  })
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("status").innerText = data.mensagem;
-  })
-  .catch(err => {
-    document.getElementById("status").innerText = "Erro ao iniciar scraping.";
-  });
-});
-</script>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const dados = {{ dados | tojson }};
+    const marcas = dados.map(d => d.marca);
+    const precos = dados.map(d => d.preco);
+    const notas = dados.map(d => d.nota);
 
+    const ctx = document.getElementById("graficoMarcas").getContext("2d");
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: marcas,
+        datasets: [
+          {
+            label: 'Preço Médio (R$)',
+            data: precos,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            yAxisID: 'y1'
+          },
+          {
+            label: 'Nota Média',
+            data: notas,
+            backgroundColor: 'rgba(255, 206, 86, 0.6)',
+            yAxisID: 'y2'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' },
+          title: { display: true, text: 'Comparativo por Marca' }
+        },
+        scales: {
+          y1: {
+            beginAtZero: true,
+            title: { display: true, text: 'Preço Médio (R$)' },
+            position: 'left'
+          },
+          y2: {
+            beginAtZero: true,
+            max: 5,
+            title: { display: true, text: 'Nota Média' },
+            position: 'right',
+            grid: { drawOnChartArea: false }
+          }
+        }
+      }
+    });
+  </script>
+</div>
 {% endblock %}

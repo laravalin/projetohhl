@@ -7,6 +7,7 @@ from app.forms import LoginForm, RegistrationForm
 from app.models import User
 from app.scrapper import scrape
 from flask import Blueprint, jsonify
+from app.models import Produto, Marca
 
 
 
@@ -20,7 +21,22 @@ def index():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    from sqlalchemy import func
+    dados_agrupados = db.session.query(
+        Marca.nome_marca,
+        func.avg(Produto.valor_produto).label('preco_medio'),
+        func.avg(Produto.nota_produto_avg).label('nota_medio')
+    ).join(Produto).group_by(Marca.nome_marca).all()
+
+    dados = [
+        {
+            "marca": row[0],
+            "preco": float(row[1]) if row[1] else 0,
+            "nota": float(row[2]) if row[2] else 0
+        } for row in dados_agrupados
+    ]
+
+    return render_template("dashboard.html", dados=dados)
 
 
 @app.route('/cadastro', methods=['GET', 'POST'])
