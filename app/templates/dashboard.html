@@ -76,9 +76,23 @@
       </div>
     </div>
   </div>
-  <form action="{{ url_for('executar_scraping') }}" method="get">
-    <button class="login-button" type="submit">Executar Scraping</button>
-  </form>
+
+<button id="btn-scraping">Executar Scraping</button>
+<div id="status"></div>
+<script>
+document.getElementById("btn-scraping").addEventListener("click", function () {
+  fetch("/executar-scraping", {
+    method: "POST"
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("status").innerText = data.mensagem;
+  })
+  .catch(err => {
+    document.getElementById("status").innerText = "Erro ao iniciar scraping.";
+  });
+});
+</script>
 </div>
 
 {% endblock %}

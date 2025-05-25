@@ -6,6 +6,11 @@ import sqlalchemy as sa
 from app.forms import LoginForm, RegistrationForm
 from app.models import User
 from app.scrapper import scrape
+from flask import Blueprint, jsonify
+
+
+
+
 
 @app.route('/')
 def index():
@@ -102,12 +107,18 @@ def preco():
 
 
 
-@app.route("/executar_scraping")
-@login_required
+
+scraper_bp = Blueprint("scraper", __name__)
+
+@scraper_bp.route("/executar-scraping", methods=["POST"])
 def executar_scraping():
     try:
-        scrape(current_user.id)
-        flash("Scraping executado com sucesso!", "success")
+        user = User.query.filter_by(email="henrique@teste.com").first()
+        if not user:
+            return jsonify({"status": "erro", "mensagem": "Usuário não encontrado"}), 404
+
+        scrape(user.id)
+        return jsonify({"status": "sucesso", "mensagem": "Scraping finalizado com sucesso!"})
+
     except Exception as e:
-        flash(f"Erro ao executar scraping: {str(e)}", "danger")
-    return redirect(url_for('dashboard'))
+        return jsonify({"status": "erro", "mensagem": str(e)}), 500
