@@ -1,5 +1,4 @@
-{% extends "base.html" %} 
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="settings-container">
   <h1>Configurações</h1>
 
@@ -7,7 +6,7 @@
     <thead>
       <tr>
         <th>Configuração</th>
-        <th>Explica configuração</th>
+        <th>Descrição</th>
         <th>Valor</th>
       </tr>
     </thead>
@@ -21,6 +20,5 @@
       {% endfor %}
     </tbody>
   </table>
-
-  <button class="save-button">Salvar</button>
-</div>{% endblock %}
+</div>
+{% endblock %}

@@ -21,20 +21,25 @@
     <header>
       <div class="logo">HHL Inc.</div>
       <nav>
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('faleconosco') }}">Fale Conosco</a>
-        <a href="{{ url_for('preco') }}">Preço</a>
-        <a href="{{ url_for('sobre') }}">Sobre</a>
-
-        {% if current_user.is_authenticated %}
-        <a href="{{ url_for('dashboard') }}">Dashboard</a>
-        <a href="{{ url_for('settings') }}">Settings</a>
-        <a href="{{ url_for('logout') }}"
-          >Logout <i class="fas fa-sign-out-alt"></i
-        ></a>
-        {% else %}
-        <a href="{{ url_for('login') }}">Login</a>
-        {% endif %}
+        <div class="nav-center">
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('faleconosco') }}">Fale Conosco</a>
+          <a href="{{ url_for('preco') }}">Preço</a>
+          <a href="{{ url_for('sobre') }}">Sobre</a>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+          <a href="{{ url_for('settings') }}">Settings</a>
+          {% endif %}
+        </div>
+        <div class="nav-right">
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('logout') }}">
+            Logout <i class="fas fa-sign-out-alt"></i>
+          </a>
+          {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          {% endif %}
+        </div>
       </nav>
     </header>
 

@@ -1,10 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <div class="dashboard-container">
-  
-  
-  
-  <h1>Análise de Concorrência | Web Scraping</h1>
-    
+  <h1 class="dashboard-title">Análise de Concorrência | Web Scraping</h1>
+
   <div class="dashboard-grid">
     <!-- Monitoramento de Concorrentes -->
     <div class="card">
@@ -22,11 +19,11 @@
     <div class="card">
       <h2>Avaliação Média dos Concorrentes</h2>
       <ul class="seller-list">
-        <li>Samsung - 4.3  (12.300 avaliações)</li>
-        <li>Apple - 4.7  (15.800 avaliações)</li>
-        <li>Xiaomi - 4.5  (10.500 avaliações)</li>
-        <li>LG - 4.2  (8.400 avaliações)</li>
-        <li>Philips - 4.0  (6.200 avaliações)</li>
+        <li>Samsung - 4.3 (12.300 avaliações)</li>
+        <li>Apple - 4.7 (15.800 avaliações)</li>
+        <li>Xiaomi - 4.5 (10.500 avaliações)</li>
+        <li>LG - 4.2 (8.400 avaliações)</li>
+        <li>Philips - 4.0 (6.200 avaliações)</li>
       </ul>
     </div>
 
@@ -34,7 +31,7 @@
     <div class="card">
       <h2>Produto Mais Avaliado</h2>
       <div class="metric">iPhone 14 - Apple</div>
-      <div class="change positive">15.000 avaliações - 4.8 </div>
+      <div class="change positive">15.000 avaliações - 4.8</div>
     </div>
 
     <!-- Produto com Maior Preço da Concorrência -->
@@ -74,15 +71,14 @@
         <!-- Barras do gráfico -->
       </div>
       <div class="chart-labels">
-        <span>Samsung</span><span>Apple</span><span>Xiaomi</span><span>LG</span><span>Philips</span>
+        <span>Samsung</span><span>Apple</span><span>Xiaomi</span><span>LG</span
+        ><span>Philips</span>
       </div>
     </div>
   </div>
   <form action="{{ url_for('executar_scraping') }}" method="get">
-    <button class="login-button" type="submit">
-      Executar Scraping
-    </button>
-    </form>
+    <button class="login-button" type="submit">Executar Scraping</button>
+  </form>
 </div>
 
 {% endblock %}
