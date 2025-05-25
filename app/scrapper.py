@@ -142,7 +142,7 @@ def scrape(user_id):
                 print(f"[ERRO] Falha ao processar item: {e}")
 
         db.session.commit()
-        print("✅ Scraping finalizado e dados salvos no banco.")
+        print("Scraping finalizado e dados salvos no banco.")
 
     finally:
         driver.quit()

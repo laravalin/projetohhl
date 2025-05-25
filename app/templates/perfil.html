@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block content %}
 <div class="profile-container">
   <div class="profile-card">
     <div class="avatar-container">
@@ -13,7 +15,11 @@
 
     <div class="profile-details">
       {% if current_user.is_authenticated %}
-      <h1>{{ current_user.nome_usuario }}</h1>
+        <h1>{{ current_user.nome_usuario }}</h1>
+        <p><strong>Email:</strong> {{ current_user.email }}</p>
+        <p><strong>Empresa:</strong> {{ current_user.nome_empresa }}</p>
+      {% else %}
+        <p>Usuário não autenticado.</p>
       {% endif %}
     </div>
   </div>
