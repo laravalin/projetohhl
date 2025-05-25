@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block content %}
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="avatar-container">
+      {% if current_user.is_authenticated %}
+      <img
+        src="https://www.gravatar.com/avatar/{{ email_hash }}?d=identicon&s=150"
+        alt="Avatar"
+        class="profile-avatar"
+      />
+      {% endif %}
+    </div>
+
+    <div class="profile-details">
+      {% if current_user.is_authenticated %}
+      <h1>{{ current_user.nome_usuario }}</h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
