@@ -1,22 +1,34 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block content %}
 <div class="login-container">
   <div class="login-box">
     <h1><i class="fas fa-sign-in-alt"></i> Login</h1>
-    {% if error %}
-    <div class="alert alert-danger">{{ error }}</div>
-    {% endif %}
+
+    {# Exibe mensagens de erro ou sucesso via flash #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
     <form method="POST" action="{{ url_for('login') }}">
+      {{ form.hidden_tag() }}
+
       <div class="form-group">
-        <label for="username"><i class="fas fa-user"></i> E-mail</label>
+        <label for="email"><i class="fas fa-user"></i> E-mail</label>
         <input
-          type="text"
-          id="username"
-          name="username"
+          type="email"
+          id="email"
+          name="email"
           placeholder="Digite seu E-mail"
+          value="{{ form.email.data or '' }}"
+          class="input-field"
           required
         />
       </div>
+
       <div class="form-group">
         <label for="password"><i class="fas fa-lock"></i> Senha:</label>
         <input
@@ -24,13 +36,16 @@
           id="password"
           name="password"
           placeholder="Digite sua senha"
+          class="input-field"
           required
         />
       </div>
+
       <button type="submit" class="login-button">
         <i class="fas fa-sign-in-alt"></i> Entrar
       </button>
     </form>
+
     <div class="register-link">
       <p>Não possui conta? <a href="{{ url_for('cadastro') }}">Cadastrar-se</a></p>
     </div>
