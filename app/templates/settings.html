@@ -1,21 +1,21 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block content %}
 <div class="settings-container">
   <h1>Configurações</h1>
 
   <table class="settings-table">
     <thead>
       <tr>
-        <th>Configuração</th>
-        <th>Descrição</th>
+        <th>Chave</th>
         <th>Valor</th>
       </tr>
     </thead>
     <tbody>
-      {% for configuracoes in configuracao %}
+      {% for c in configuracao %}
       <tr>
-        <td>{{ configuracoes.nome }}</td>
-        <td>{{ configuracoes.descricao }}</td>
-        <td>{{ configuracoes.valor }}</td>
+        <td>{{ c.chave_configuracao }}</td>
+        <td>{{ c.valor_configuracao }}</td>
       </tr>
       {% endfor %}
     </tbody>

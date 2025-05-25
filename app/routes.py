@@ -8,6 +8,7 @@ from app.models import User
 from app.scrapper import scrape
 from flask import Blueprint, jsonify
 from app.models import Produto, Marca
+from app.models import Configuracoes
 
 
 
@@ -63,12 +64,7 @@ def cadastro():
 @app.route('/settings')
 @login_required
 def settings():
-    configuracoes = [
-        {"nome": "Configuração 1", "descricao": "Explica configuração 1", "valor": "Sim"},
-        {"nome": "Configuração 2", "descricao": "Explica configuração 2", "valor": "Não"},
-        {"nome": "Configuração 3", "descricao": "Explica configuração 3", "valor": "URL"},
-        {"nome": "Configuração 4", "descricao": "Explica configuração 4", "valor": "SSH"}
-    ]
+    configuracoes = Configuracoes.query.filter_by(user_id=current_user.id).all()
     return render_template('settings.html', configuracao=configuracoes)
 
 
